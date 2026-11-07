@@ -8,4 +8,5 @@ urlpatterns = [
     path('dashboard/', views.dashboard, name='dashboard'),
     path('logout/', views.logout, name='logout'),
     path('upload/', views.upload_document, name='upload_document'),
+    path('delete/<int:document_id>/', views.delete_document, name='delete_document'),
 ]

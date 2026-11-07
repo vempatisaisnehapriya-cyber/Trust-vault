@@ -20,6 +20,24 @@
 
     <button type="submit">Upload Document</button>
 </form>
+<form method="GET" action="/dashboard/">
+    <input type="text" name="search" placeholder="Search documents...">
+    <button type="submit">Search</button>
+</form>
+    <h3>Your Documents</h3>
+
+{% for document in documents %}
+    <p>
+        {{ document.title }}
+        <a href="{{ document.file.url }}" download>Download</a>
+        <form method="POST" action="{% url 'delete_document' document.id %}">
+    {% csrf_token %}
+    <button type="submit">Delete</button>
+</form>
+    </p>
+{% empty %}
+    <p>No documents uploaded yet.</p>
+{% endfor %}   
     <p>Your account is successfully logged in.</p>
     <a href="/logout/">
     <button>Logout</button>

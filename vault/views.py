@@ -51,8 +51,18 @@ def signup(request):
 
     return render(request, 'vault/signup.html')
 @login_required(login_url='login')
+@login_required(login_url='login')
 def dashboard(request):
-    return render(request, 'vault/dashboard.html')
+    search_query = request.GET.get('search')
+
+    documents = Document.objects.filter(user=request.user)
+
+    if search_query:
+        documents = documents.filter(title__icontains=search_query)
+
+    documents = documents.order_by('-uploaded_at')
+
+    return render(request, 'vault/dashboard.html', {'documents': documents})
 def logout(request):
     auth_logout(request)
     return redirect('home')
@@ -69,5 +79,16 @@ def upload_document(request):
                 file=file
             )
             return redirect('dashboard')
+
+    return redirect('dashboard')
+@login_required(login_url='login')
+def delete_document(request, document_id):
+    if request.method == 'POST':
+        document = Document.objects.get(
+            id=document_id,
+            user=request.user
+        )
+        document.file.delete()
+        document.delete()
 
     return redirect('dashboard')
