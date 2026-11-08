@@ -1,49 +1,235 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>TrustVault - Home</title>
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: #101827;
-            color: white;
-            text-align: center;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TrustVault | Your Private Universe</title>
 
-        .container {
-            padding: 100px 20px;
-        }
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-        h1 {
-            color: #38d9c5;
-            font-size: 45px;
-        }
+body {
+    font-family: Arial, sans-serif;
+    background: #090d1c;
+    color: white;
+}
 
-        p {
-            font-size: 18px;
-            color: #cbd5e1;
-        }
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 25px 8%;
+    border-bottom: 1px solid #252b43;
+}
 
-        button {
-            background: #38d9c5;
-            color: #101827;
-            border: none;
-            padding: 14px 30px;
-            margin: 15px;
-            border-radius: 8px;
-            font-size: 16px;
-            cursor: pointer;
-        }
-    </style>
+.logo {
+    font-size: 26px;
+    font-weight: bold;
+    color: #b69cff;
+}
+
+nav a {
+    color: #d4d7e8;
+    text-decoration: none;
+    margin-left: 25px;
+}
+
+.hero {
+    min-height: 580px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 70px 10%;
+    gap: 40px;
+}
+
+.hero-text {
+    max-width: 550px;
+}
+
+.tag {
+    color: #b69cff;
+    letter-spacing: 3px;
+    font-size: 13px;
+}
+
+h1 {
+    font-size: 55px;
+    line-height: 1.2;
+    margin: 25px 0;
+}
+
+h1 span {
+    color: #a98aff;
+}
+
+.hero p {
+    color: #aeb5cb;
+    font-size: 17px;
+    line-height: 1.8;
+}
+
+.btn {
+    display: inline-block;
+    margin-top: 30px;
+    padding: 15px 28px;
+    background: linear-gradient(120deg,#9d7bff,#5d9cff);
+    color: white;
+    text-decoration: none;
+    border-radius: 10px;
+    font-weight: bold;
+}
+
+.vault-art {
+    width: 280px;
+    height: 280px;
+    border-radius: 50%;
+    background: radial-gradient(circle,#5944a9,#171a38 65%,#090d1c);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 110px;
+    box-shadow: 0 0 80px #7052c966;
+}
+
+.features {
+    padding: 50px 8%;
+    text-align: center;
+}
+
+.features h2 {
+    font-size: 32px;
+    margin-bottom: 35px;
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(210px,1fr));
+    gap: 20px;
+}
+
+.card {
+    background: #151b30;
+    border: 1px solid #292f4b;
+    padding: 30px 20px;
+    border-radius: 16px;
+}
+
+.card .icon {
+    font-size: 38px;
+}
+
+.card h3 {
+    margin: 18px 0 10px;
+    color: #c5b2ff;
+}
+
+.card p {
+    color: #aeb5cb;
+    line-height: 1.6;
+}
+
+footer {
+    text-align: center;
+    padding: 30px;
+    color: #8992aa;
+}
+
+@media(max-width:700px) {
+    nav {
+        padding: 20px;
+    }
+
+    nav a {
+        margin-left: 10px;
+        font-size: 13px;
+    }
+
+    .hero {
+        flex-direction: column;
+        text-align: center;
+        padding: 60px 25px;
+    }
+
+    h1 {
+        font-size: 39px;
+    }
+
+    .vault-art {
+        width: 210px;
+        height: 210px;
+        font-size: 80px;
+    }
+}
+</style>
 </head>
-<body>
-    <div class="container">
-        <h1>TrustVault</h1>
-        <p>Your Safety, Our Priority.</p>
 
-        <a href="/login/"><button>Login</button></a>
-        <a href="/signup/"><button>Sign Up</button></a>
+<body>
+
+<nav>
+    <div class="logo">◈ TrustVault</div>
+    <div>
+        <a href="/">Home</a>
+        <a href="/login/">Login</a>
+        <a href="/signup/">Sign Up</a>
     </div>
+</nav>
+
+<section class="hero">
+    <div class="hero-text">
+        <div class="tag">YOUR PRIVATE DIGITAL UNIVERSE</div>
+
+        <h1>Your Life.<br>Your Files.<br><span>Your Secret Space.</span></h1>
+
+        <p>
+            One private space for everything that matters.
+            Keep your important documents organized and
+            protected with TrustVault.
+        </p>
+
+        <a class="btn" href="/signup/">Create Your Vault →</a>
+    </div>
+
+    <div class="vault-art">🔐</div>
+</section>
+
+<section class="features">
+    <h2>A Smarter Way to Protect Your World</h2>
+
+    <div class="cards">
+        <div class="card">
+            <div class="icon">📁</div>
+            <h3>Personal Vault</h3>
+            <p>Keep your important files in one private space.</p>
+        </div>
+
+        <div class="card">
+            <div class="icon">🛡️</div>
+            <h3>Privacy First</h3>
+            <p>Your personal space, designed with privacy in mind.</p>
+        </div>
+
+        <div class="card">
+            <div class="icon">✨</div>
+            <h3>Smart Organization</h3>
+            <p>Organize your important documents with ease.</p>
+        </div>
+
+        <div class="card">
+            <div class="icon">☁️</div>
+            <h3>Easy Access</h3>
+            <p>Access your vault whenever you need it.</p>
+        </div>
+    </div>
+</section>
+
+<footer>
+    © 2026 TrustVault. Your privacy, your world.
+</footer>
+
 </body>
 </html>
