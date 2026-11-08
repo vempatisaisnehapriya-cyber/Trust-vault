@@ -1,21 +1,207 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>TrustVault Sign Up</title>
-</head>
-<body style="background:#101827; color:white; text-align:center; font-family:Arial; padding-top:80px;">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TrustVault | Sign Up</title>
 
-    <h1 style="color:#38d9c5;">Create Your TrustVault Account</h1>
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    background: #111020;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 25px;
+    color: white;
+}
+
+.container {
+    width: 100%;
+    max-width: 450px;
+    background: #1d1b32;
+    padding: 38px 35px;
+    border-radius: 20px;
+    border: 1px solid #34304d;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+}
+
+.logo {
+    text-align: center;
+    color: #b9a5ff;
+    font-size: 25px;
+    font-weight: bold;
+    margin-bottom: 25px;
+}
+
+.logo span {
+    color: white;
+}
+
+.icon {
+    width: 60px;
+    height: 60px;
+    margin: 0 auto 18px;
+    background: #30294d;
+    color: #c4b3ff;
+    border-radius: 17px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+}
+
+h1 {
+    text-align: center;
+    font-size: 26px;
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    text-align: center;
+    color: #aaa6bd;
+    font-size: 14px;
+    margin-bottom: 25px;
+}
+
+.error {
+    background: #482735;
+    color: #ffb5c5;
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 18px;
+    text-align: center;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 14px;
+    color: #e2dff0;
+}
+
+input {
+    width: 100%;
+    padding: 13px;
+    background: #131225;
+    border: 1px solid #403b5b;
+    border-radius: 9px;
+    color: white;
+    font-size: 14px;
+    margin-bottom: 17px;
+    outline: none;
+}
+
+input:focus {
+    border-color: #aa92ff;
+}
+
+.signup-btn {
+    width: 100%;
+    padding: 15px;
+    border: none;
+    border-radius: 9px;
+    background: #a68aff;
+    color: #17132a;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 8px;
+}
+
+.signup-btn:hover {
+    background: #beaaff;
+}
+
+.login {
+    text-align: center;
+    color: #aaa6bd;
+    font-size: 14px;
+    margin-top: 23px;
+}
+
+.login a, .home {
+    color: #c0adff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.home {
+    display: block;
+    text-align: center;
+    margin-top: 22px;
+    font-size: 13px;
+}
+
+@media(max-width:450px) {
+    .container {
+        padding: 32px 22px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="logo">◈ <span>TrustVault</span></div>
+
+    <div class="icon">🔐</div>
+
+    <h1>Create Account</h1>
+
+    <p class="subtitle">
+        Start your secure digital journey today.
+    </p>
+
+    {% if error %}
+    <div class="error">{{ error }}</div>
+    {% endif %}
 
     <form method="POST">
         {% csrf_token %}
-        <input type="text" name="full_name" placeholder="Full Name" required><br><br>
-        <input type="text" name="username" placeholder="Username" required><br><br>
-        <input type="email" name="email" placeholder="Email" required><br><br>
-        <input type="password" name="password" placeholder="Password" required><br><br>
-        <input type="password" name="confirm_password" placeholder="Confirm Password" required><br><br>
-        <button type="submit">Sign Up</button>
+
+        <label>Full Name</label>
+        <input type="text" name="full_name"
+               placeholder="Enter your full name" required>
+
+        <label>Username</label>
+        <input type="text" name="username"
+               placeholder="Choose a username" required>
+
+        <label>Email Address</label>
+        <input type="email" name="email"
+               placeholder="Enter your email" required>
+
+        <label>Password</label>
+        <input type="password" name="password"
+               placeholder="Create a password" required>
+
+        <label>Confirm Password</label>
+        <input type="password" name="confirm_password"
+               placeholder="Confirm your password" required>
+
+        <button type="submit" class="signup-btn">
+            Create My Account →
+        </button>
     </form>
+
+    <p class="login">
+        Already have an account?
+        <a href="/login/">Login</a>
+    </p>
+
+    <a href="/" class="home">← Back to Home</a>
+
+</div>
 
 </body>
 </html>
