@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile | TrustVault</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f5f3fa;
+            min-height: 100vh;
+            padding: 40px 20px;
+            color: #25213a;
+        }
+
+        .container {
+            max-width: 650px;
+            margin: auto;
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 35px rgba(40, 25, 80, 0.08);
+        }
+
+        .top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 35px;
+        }
+
+        .top h1 {
+            font-size: 26px;
+        }
+
+        .back {
+            color: #7552b5;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .avatar {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            background: #eee7ff;
+            color: #7552b5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 36px;
+            margin: 0 auto 15px;
+        }
+
+        .name {
+            text-align: center;
+            font-size: 23px;
+            margin-bottom: 5px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #888;
+            margin-bottom: 35px;
+        }
+
+        .details {
+            background: #faf9fd;
+            padding: 22px;
+            border-radius: 14px;
+        }
+
+        .item {
+            padding: 15px 0;
+            border-bottom: 1px solid #eeeaf5;
+        }
+
+        .item:last-child {
+            border-bottom: none;
+        }
+
+        .label {
+            color: #888;
+            font-size: 13px;
+            margin-bottom: 7px;
+        }
+
+        .value {
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .logout {
+            display: block;
+            text-align: center;
+            margin-top: 30px;
+            padding: 14px;
+            background: #7552b5;
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+        }
+
+        .logout:hover {
+            background: #5e4097;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+
+        <div class="top">
+            <h1>My Profile</h1>
+            <a href="/dashboard/" class="back">← Dashboard</a>
+        </div>
+
+        <div class="avatar">👤</div>
+
+        <h2 class="name">{{ request.user.first_name|default:request.user.username }}</h2>
+        <p class="subtitle">Welcome to your TrustVault account</p>
+
+        <div class="details">
+
+            <div class="item">
+                <p class="label">Full Name</p>
+                <p class="value">{{ request.user.first_name|default:"Not provided" }}</p>
+            </div>
+
+            <div class="item">
+                <p class="label">Username</p>
+                <p class="value">{{ request.user.username }}</p>
+            </div>
+
+            <div class="item">
+                <p class="label">Email Address</p>
+                <p class="value">{{ request.user.email|default:"Not provided" }}</p>
+            </div>
+
+            <div class="item">
+                <p class="label">Account Status</p>
+                <p class="value">Active</p>
+            </div>
+
+        </div>
+
+        <a href="/logout/" class="logout">Logout</a>
+
+    </div>
+</body>
+</html>

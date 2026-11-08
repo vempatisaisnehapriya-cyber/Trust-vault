@@ -33,6 +33,12 @@ header {
     color: #6651a5;
 }
 
+.header-links {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+}
+
 header a {
     text-decoration: none;
     color: #6651a5;
@@ -175,6 +181,10 @@ footer {
     .welcome h1 {
         font-size: 27px;
     }
+
+    .header-links {
+        gap: 12px;
+    }
 }
 </style>
 </head>
@@ -183,7 +193,11 @@ footer {
 
 <header>
     <div class="logo">◈ TrustVault</div>
-    <a href="/logout/">Logout ↗</a>
+
+    <div class="header-links">
+        <a href="{% url 'profile' %}">👤 My Profile</a>
+        <a href="/logout/">Logout ↗</a>
+    </div>
 </header>
 
 <main>
