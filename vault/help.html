@@ -1,0 +1,55 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>TrustVault Help</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #17152c;
+            color: white;
+            padding: 40px 20px;
+        }
+        .card {
+            max-width: 700px;
+            margin: auto;
+            padding: 30px;
+            background: #292547;
+            border-radius: 18px;
+        }
+        h1, h3 {
+            color: #b8a5ff;
+        }
+        p {
+            line-height: 1.7;
+        }
+        a {
+            color: #c8baff;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h1>TrustVault Help Center</h1>
+        <p>Welcome! Follow these steps to use TrustVault.</p>
+
+        <h3>1. Upload Documents</h3>
+        <p>Enter a document name, select your file and click Save to my vault.</p>
+
+        <h3>2. Search Documents</h3>
+        <p>Enter the document name in the search box and click Search.</p>
+
+        <h3>3. Download Documents</h3>
+        <p>Click Download to save your document to your device.</p>
+
+        <h3>4. Delete Documents</h3>
+        <p>Click Delete to remove a document from your vault.</p>
+
+        <h3>5. Account</h3>
+        <p>Use My Profile to view your profile and Logout to sign out.</p>
+
+        <a href="{% url 'dashboard' %}">← Back to Dashboard</a>
+    </div>
+</body>
+</html>

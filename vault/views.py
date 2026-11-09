@@ -130,3 +130,9 @@ def download_document(request, document_id):
 @login_required(login_url='login')
 def profile(request):
     return render(request, 'vault/profile.html')
+def about(request):
+    return render(request, 'vault/about.html')
+
+
+def help_page(request):
+    return render(request, 'vault/help.html')

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>About TrustVault</title>
+    <style>
+        body {
+            font-family: Arial;
+            background: #17152c;
+            color: white;
+            text-align: center;
+            padding: 60px 20px;
+        }
+        .card {
+            max-width: 650px;
+            margin: auto;
+            padding: 35px;
+            background: #292547;
+            border-radius: 18px;
+        }
+        h1 { color: #b8a5ff; }
+        p { line-height: 1.8; }
+        a { color: #c8baff; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h1>About TrustVault</h1>
+        <p>TrustVault is a personal digital document management platform.</p>
+        <p>Our goal is to help users store, manage, search and download their important documents easily.</p>
+        <h3>Our Features</h3>
+        <p>✓ User Login and Signup</p>
+        <p>✓ Secure document upload</p>
+        <p>✓ Document search</p>
+        <p>✓ Download and Delete documents</p>
+        <a href="{% url 'dashboard' %}">Back to Dashboard</a>
+    </div>
+</body>
+</html>
