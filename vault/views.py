@@ -4,6 +4,12 @@ from django.contrib.auth import authenticate, login as auth_login
 from django.contrib.auth import logout as auth_logout
 from django.contrib.auth.decorators import login_required
 from .models import Document
+from django.http import FileResponse
+from django.shortcuts import get_object_or_404
+from django.core.exceptions import ValidationError
+import os
+from django.contrib import messages
+from django.http import HttpResponseBadRequest
 
 def home(request):
     return render(request, 'vault/home.html')
@@ -68,17 +74,33 @@ def logout(request):
     return redirect('home')
 @login_required(login_url='login')
 def upload_document(request):
-    if request.method == 'POST':
-        title = request.POST.get('title')
-        file = request.FILES.get('file')
+    if request.method != 'POST':
+        return redirect('dashboard')
 
-        if file:
-            Document.objects.create(
-                user=request.user,
-                title=title,
-                file=file
-            )
-            return redirect('dashboard')
+    title = request.POST.get('title', '').strip()
+    file = request.FILES.get('file')
+
+    allowed_extensions = [
+        '.pdf', '.docx', '.txt',
+        '.jpg', '.jpeg', '.png'
+    ]
+
+    if not title or not file:
+        return redirect('dashboard')
+
+    extension = os.path.splitext(file.name)[1].lower()
+
+    if extension not in allowed_extensions:
+        return HttpResponseBadRequest('File type not allowed.')
+
+    if file.size > 5 * 1024 * 1024:
+        return HttpResponseBadRequest('File size must be below 5 MB.')
+
+    Document.objects.create(
+        user=request.user,
+        title=title,
+        file=file
+    )
 
     return redirect('dashboard')
 @login_required(login_url='login')
@@ -92,3 +114,19 @@ def delete_document(request, document_id):
         document.delete()
 
     return redirect('dashboard')
+@login_required(login_url='login')
+def download_document(request, document_id):
+    document = get_object_or_404(
+        Document,
+        id=document_id,
+        user=request.user
+    )
+
+    return FileResponse(
+        document.file.open('rb'),
+        as_attachment=True,
+        filename=document.file.name.split('/')[-1]
+    )
+@login_required(login_url='login')
+def profile(request):
+    return render(request, 'vault/profile.html')

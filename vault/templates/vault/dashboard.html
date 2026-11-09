@@ -1,202 +1,232 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TrustVault | My Space</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TrustVault | My Space</title>
 
-<style>
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-body {
-    font-family: Arial, sans-serif;
-    background: #f7f6fa;
-    color: #29283a;
-}
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f3fb;
+            color: #29283a;
+        }
 
-header {
-    padding: 22px 7%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: white;
-    border-bottom: 1px solid #eae8f0;
-}
+        header {
+            background: #17152c;
+            color: white;
+            padding: 20px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
 
-.logo {
-    font-size: 23px;
-    font-weight: bold;
-    color: #6651a5;
-}
+        .logo {
+            font-size: 25px;
+            font-weight: bold;
+            color: #b8a5ff;
+        }
 
-.header-links {
-    display: flex;
-    align-items: center;
-    gap: 22px;
-}
+        .header-links {
+            display: flex;
+            gap: 20px;
+        }
 
-header a {
-    text-decoration: none;
-    color: #6651a5;
-    font-weight: bold;
-}
+        .header-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
 
-main {
-    max-width: 1050px;
-    margin: 55px auto;
-    padding: 0 22px;
-}
+        .header-links a:hover {
+            color: #b8a5ff;
+        }
 
-.welcome {
-    margin-bottom: 35px;
-}
+        main {
+            max-width: 1050px;
+            margin: 35px auto;
+            padding: 0 20px;
+        }
 
-.welcome small {
-    color: #8b80a7;
-    letter-spacing: 2px;
-}
+        .welcome {
+            background: linear-gradient(135deg, #30265b, #7460b9);
+            color: white;
+            padding: 40px;
+            border-radius: 18px;
+            margin-bottom: 25px;
+        }
 
-.welcome h1 {
-    font-size: 34px;
-    margin: 12px 0;
-}
+        .welcome small {
+            color: #d8ceff;
+            letter-spacing: 2px;
+        }
 
-.welcome p {
-    color: #858295;
-}
+        .welcome h1 {
+            margin: 12px 0;
+            font-size: 30px;
+        }
 
-.section {
-    background: white;
-    padding: 28px;
-    border-radius: 14px;
-    margin-bottom: 24px;
-    border: 1px solid #ebe8f2;
-}
+        .section {
+            background: white;
+            padding: 28px;
+            border-radius: 16px;
+            margin-bottom: 25px;
+            box-shadow: 0 5px 20px rgba(30, 20, 70, 0.06);
+        }
 
-.section h2 {
-    font-size: 20px;
-    margin-bottom: 20px;
-}
+        h2 {
+            margin-bottom: 20px;
+            color: #30265b;
+        }
 
-input[type="text"] {
-    padding: 13px;
-    width: 100%;
-    border: 1px solid #ddd8e9;
-    border-radius: 8px;
-    margin-bottom: 15px;
-    outline: none;
-}
+        input[type="text"],
+        input[type="file"] {
+            width: 100%;
+            padding: 13px;
+            margin: 10px 0;
+            border: 1px solid #ddd8ef;
+            border-radius: 9px;
+            background: #faf9ff;
+        }
 
-input[type="file"] {
-    margin: 12px 0 20px;
-    width: 100%;
-}
+        button {
+            background: #6953ad;
+            color: white;
+            border: none;
+            padding: 12px 22px;
+            border-radius: 9px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-top: 8px;
+        }
 
-button {
-    border: none;
-    background: #7661ae;
-    color: white;
-    padding: 12px 20px;
-    border-radius: 8px;
-    cursor: pointer;
-}
+        button:hover {
+            background: #49377f;
+        }
 
-button:hover {
-    background: #5d488f;
-}
+        .search-form {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
 
-.search-form {
-    display: flex;
-    gap: 10px;
-}
+        .search-form input {
+            flex: 1;
+            margin: 0;
+        }
 
-.search-form input {
-    margin: 0;
-}
+        .document {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+            padding: 17px 0;
+            border-bottom: 1px solid #eeeaf4;
+            flex-wrap: wrap;
+        }
 
-.document {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 15px;
-    padding: 17px 0;
-    border-bottom: 1px solid #eeeaf4;
-}
+        .document:last-child {
+            border-bottom: none;
+        }
 
-.document:last-child {
-    border-bottom: none;
-}
+        .document-name {
+            font-weight: bold;
+            overflow-wrap: anywhere;
+        }
 
-.document-name {
-    font-weight: bold;
-    overflow-wrap: anywhere;
-}
+        .actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
 
-.actions {
-    display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
-}
+        .actions a {
+            color: #59439a;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 10px 14px;
+            border: 1px solid #ddd5f4;
+            border-radius: 8px;
+        }
 
-.actions a {
-    color: #6651a5;
-    text-decoration: none;
-    padding: 10px;
-}
+        .actions a:hover {
+            background: #f1edff;
+        }
 
-.delete-btn {
-    background: #f5e9ed;
-    color: #a04460;
-}
+        .actions form {
+            margin: 0;
+        }
 
-.delete-btn:hover {
-    background: #f0d8e0;
-}
+        .delete-btn {
+            background: #e44f65;
+            margin: 0;
+        }
 
-.empty {
-    color: #9993a8;
-    padding: 15px 0;
-}
+        .delete-btn:hover {
+            background: #bd3048;
+        }
 
-footer {
-    text-align: center;
-    padding: 25px;
-    color: #9993a8;
-}
+        .empty {
+            color: #777;
+            padding: 15px 0;
+        }
 
-@media(max-width:600px) {
-    .document {
-        align-items: flex-start;
-        flex-direction: column;
-    }
+        footer {
+            text-align: center;
+            padding: 25px;
+            color: #777;
+        }
 
-    .search-form {
-        flex-direction: column;
-    }
+        @media (max-width: 600px) {
+            header {
+                padding: 18px;
+            }
 
-    .welcome h1 {
-        font-size: 27px;
-    }
+            .welcome {
+                padding: 25px;
+            }
 
-    .header-links {
-        gap: 12px;
-    }
-}
-</style>
+            .welcome h1 {
+                font-size: 24px;
+            }
+
+            .section {
+                padding: 20px;
+            }
+
+            .search-form {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .search-form button {
+                width: 100%;
+            }
+
+            .document {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
 <header>
-    <div class="logo">◈ TrustVault</div>
+    <div class="logo">◆ TrustVault</div>
 
     <div class="header-links">
         <a href="{% url 'profile' %}">👤 My Profile</a>
-        <a href="/logout/">Logout ↗</a>
+        <a href="{% url 'logout' %}">Logout ↗️</a>
     </div>
 </header>
 
@@ -211,53 +241,80 @@ footer {
     <section class="section">
         <h2>＋ Add a document</h2>
 
-        <form method="POST" action="/upload/" enctype="multipart/form-data">
+        <form method="POST"
+              action="{% url 'upload_document' %}"
+              enctype="multipart/form-data">
+
             {% csrf_token %}
 
-            <input type="text" name="title"
-                   placeholder="Give your document a name" required>
+            <input type="text"
+                   name="title"
+                   placeholder="Give your document a name"
+                   required>
 
-            <input type="file" name="file" required>
+            <input type="file"
+                   name="file"
+                   accept=".pdf,.docx,.txt,.jpg,.jpeg,.png"
+                   required>
 
-            <button type="submit">Save to my vault →</button>
+            <button type="submit">Save to my vault ↑</button>
+
         </form>
     </section>
 
     <section class="section">
-        <h2>Find your documents</h2>
+        <h2>🔍 Search documents</h2>
 
-        <form method="GET" action="/dashboard/" class="search-form">
-            <input type="text" name="search"
-                   placeholder="Search your vault...">
+        <form method="GET"
+              action="{% url 'dashboard' %}"
+              class="search-form">
+
+            <input type="text"
+                   name="search"
+                   placeholder="Search your documents..."
+                   value="{{ request.GET.search|default:'' }}">
+
             <button type="submit">Search</button>
+
         </form>
     </section>
 
     <section class="section">
-        <h2>My collection</h2>
+        <h2>📁 My Collection</h2>
 
         {% for document in documents %}
-        <div class="document">
 
-            <div class="document-name">
-                📄 {{ document.title }}
+            <div class="document">
+
+                <div class="document-name">
+                    📄 {{ document.title }}
+                </div>
+
+                <div class="actions">
+
+                    <a href="{% url 'download_document' document.id %}">
+                        Download ↓
+                    </a>
+
+                    <form method="POST"
+                          action="{% url 'delete_document' document.id %}">
+
+                        {% csrf_token %}
+
+                        <button class="delete-btn" type="submit">
+                            Delete
+                        </button>
+
+                    </form>
+
+                </div>
+
             </div>
 
-            <div class="actions">
-                <a href="{{ document.file.url }}" download>Download ↓</a>
-
-                <form method="POST"
-                      action="{% url 'delete_document' document.id %}">
-                    {% csrf_token %}
-                    <button class="delete-btn" type="submit">
-                        Delete
-                    </button>
-                </form>
-            </div>
-
-        </div>
         {% empty %}
-        <p class="empty">Your vault is waiting for its first document.</p>
+
+            <p class="empty">No documents uploaded yet.</p>
+
         {% endfor %}
 
     </section>
@@ -265,7 +322,7 @@ footer {
 </main>
 
 <footer>
-    TrustVault · Your privacy, your world.
+    © 2026 TrustVault | Your files, your control.
 </footer>
 
 </body>
