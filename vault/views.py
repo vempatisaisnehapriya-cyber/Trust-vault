@@ -10,6 +10,7 @@ from django.core.exceptions import ValidationError
 import os
 from django.contrib import messages
 from django.http import HttpResponseBadRequest
+from .models import Document, DocumentShare
 @login_required(login_url='login')
 def admin_dashboard(request):
     if not request.user.is_staff:
@@ -30,15 +31,8 @@ def home(request):
 def login(request):
     selected_role = request.GET.get('role', 'owner').lower()
 
-    if selected_role not in ['admin', 'owner', 'viewer']:
-        selected_role = 'owner'
-
     if request.method == 'POST':
         selected_role = request.POST.get('role', 'owner').lower()
-
-        if selected_role not in ['admin', 'owner', 'viewer']:
-            selected_role = 'owner'
-
         username = request.POST.get('username', '').strip()
         password = request.POST.get('password', '')
 
@@ -48,7 +42,7 @@ def login(request):
             password=password
         )
 
-        if user is None:
+        if not user:
             return render(request, 'vault/login.html', {
                 'error': 'Invalid username or password!',
                 'role': selected_role
@@ -56,25 +50,23 @@ def login(request):
 
         if selected_role == 'admin' and not user.is_staff:
             return render(request, 'vault/login.html', {
-                'error': 'Admin access is restricted.',
+                'error': 'Admin access restricted.',
                 'role': selected_role
             })
 
-        if selected_role == 'owner' and user.is_staff:
+        if selected_role in ['owner', 'viewer'] and user.is_staff:
             return render(request, 'vault/login.html', {
                 'error': 'Please use Admin login.',
                 'role': selected_role
             })
 
-        if selected_role == 'viewer':
-            return render(request, 'vault/login.html', {
-                'error': 'Viewer access is not enabled yet.',
-                'role': selected_role
-            })
+        if selected_role not in ['admin', 'owner', 'viewer']:
+            selected_role = 'owner'
 
         auth_login(request, user)
+        request.session['role'] = selected_role
 
-        if user.is_staff:
+        if selected_role == 'admin':
             return redirect('admin_dashboard')
 
         return redirect('dashboard')
@@ -113,16 +105,27 @@ def signup(request):
 @login_required(login_url='login')
 @login_required(login_url='login')
 def dashboard(request):
-    search_query = request.GET.get('search')
+    search_query = request.GET.get('search', '')
+    role = request.session.get('role', 'owner')
 
-    documents = Document.objects.filter(user=request.user)
+    if role == 'viewer':
+        shared_ids = DocumentShare.objects.filter(
+            viewer=request.user
+        ).values_list('document_id', flat=True)
+
+        documents = Document.objects.filter(id__in=shared_ids)
+    else:
+        documents = Document.objects.filter(user=request.user)
 
     if search_query:
         documents = documents.filter(title__icontains=search_query)
 
     documents = documents.order_by('-uploaded_at')
 
-    return render(request, 'vault/dashboard.html', {'documents': documents})
+    return render(request, 'vault/dashboard.html', {
+        'documents': documents,
+        'role': role
+    })
 def logout(request):
     auth_logout(request)
     return redirect('home')
@@ -170,11 +173,20 @@ def delete_document(request, document_id):
     return redirect('dashboard')
 @login_required(login_url='login')
 def download_document(request, document_id):
-    document = get_object_or_404(
-        Document,
-        id=document_id,
-        user=request.user
-    )
+    role = request.session.get('role', 'owner')
+
+    if role == 'viewer':
+        document = get_object_or_404(
+            Document,
+            id=document_id,
+            shares__viewer=request.user
+        )
+    else:
+        document = get_object_or_404(
+            Document,
+            id=document_id,
+            user=request.user
+        )
 
     return FileResponse(
         document.file.open('rb'),
