@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TrustVault | Admin Dashboard</title>
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #111020;
+    color: white;
+    padding: 30px;
+}
+.container {
+    max-width: 900px;
+    margin: 50px auto;
+}
+h1 { color: #b9a5ff; }
+.card {
+    background: #1d1b32;
+    padding: 30px;
+    border-radius: 15px;
+    margin-top: 25px;
+}
+a {
+    display: inline-block;
+    margin: 12px 10px 0 0;
+    padding: 12px 20px;
+    background: #a68aff;
+    color: #17132a;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: bold;
+}
+</style>
+</head>
+<body>
+<div class="container">
+    <h1>TrustVault Admin Dashboard</h1>
+    <div class="card">
+        <h2>Welcome, {{ request.user.username }}!</h2>
+        <p>You are logged in as Administrator.</p>
+        <a href="/admin/">Manage Users & Data</a>
+        <a href="{% url 'dashboard' %}">Owner Dashboard</a>
+        <a href="{% url 'logout' %}">Logout</a>
+    </div>
+</div>
+</body>
+</html>

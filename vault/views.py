@@ -10,24 +10,78 @@ from django.core.exceptions import ValidationError
 import os
 from django.contrib import messages
 from django.http import HttpResponseBadRequest
+@login_required(login_url='login')
+def admin_dashboard(request):
+    if not request.user.is_staff:
+        return redirect('dashboard')
 
+    total_users = User.objects.count()
+    total_documents = Document.objects.count()
+
+    users = User.objects.all().order_by('-date_joined')
+
+    return render(request, 'vault/admin_dashboard.html', {
+        'total_users': total_users,
+        'total_documents': total_documents,
+        'users': users,
+    })
 def home(request):
     return render(request, 'vault/home.html')
 def login(request):
+    selected_role = request.GET.get('role', 'owner').lower()
+
+    if selected_role not in ['admin', 'owner', 'viewer']:
+        selected_role = 'owner'
+
     if request.method == 'POST':
-        username = request.POST.get('username')
-        password = request.POST.get('password')
+        selected_role = request.POST.get('role', 'owner').lower()
 
-        user = authenticate(request, username=username, password=password)
+        if selected_role not in ['admin', 'owner', 'viewer']:
+            selected_role = 'owner'
 
-        if user is not None:
-            auth_login(request, user)
-            return redirect('dashboard')
+        username = request.POST.get('username', '').strip()
+        password = request.POST.get('password', '')
 
-        return render(request, 'vault/login.html',
-                      {'error': 'Invalid username or password!'})
+        user = authenticate(
+            request,
+            username=username,
+            password=password
+        )
 
-    return render(request, 'vault/login.html')
+        if user is None:
+            return render(request, 'vault/login.html', {
+                'error': 'Invalid username or password!',
+                'role': selected_role
+            })
+
+        if selected_role == 'admin' and not user.is_staff:
+            return render(request, 'vault/login.html', {
+                'error': 'Admin access is restricted.',
+                'role': selected_role
+            })
+
+        if selected_role == 'owner' and user.is_staff:
+            return render(request, 'vault/login.html', {
+                'error': 'Please use Admin login.',
+                'role': selected_role
+            })
+
+        if selected_role == 'viewer':
+            return render(request, 'vault/login.html', {
+                'error': 'Viewer access is not enabled yet.',
+                'role': selected_role
+            })
+
+        auth_login(request, user)
+
+        if user.is_staff:
+            return redirect('admin_dashboard')
+
+        return redirect('dashboard')
+
+    return render(request, 'vault/login.html', {
+        'role': selected_role
+    })
 def signup(request):
     if request.method == 'POST':
         full_name = request.POST.get('full_name')

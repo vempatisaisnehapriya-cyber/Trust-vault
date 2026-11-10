@@ -6,241 +6,90 @@
 <title>TrustVault | Login</title>
 
 <style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: Arial, sans-serif;
-}
-
-body {
-    min-height: 100vh;
-    background: #111020;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-    color: white;
-}
-
-.container {
-    width: 100%;
-    max-width: 420px;
-    background: #1d1b32;
-    padding: 42px 35px;
-    border-radius: 20px;
-    border: 1px solid #34304d;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-}
-
-.logo {
-    text-align: center;
-    color: #b9a5ff;
-    font-size: 25px;
-    font-weight: bold;
-    margin-bottom: 35px;
-}
-
-.logo span {
-    color: white;
-}
-
-.icon {
-    width: 65px;
-    height: 65px;
-    margin: 0 auto 22px;
-    background: #30294d;
-    color: #c4b3ff;
-    border-radius: 18px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 30px;
-}
-
-h1 {
-    text-align: center;
-    font-size: 27px;
-    margin-bottom: 10px;
-}
-
-.subtitle {
-    text-align: center;
-    color: #aaa6bd;
-    font-size: 14px;
-    margin-bottom: 30px;
-}
-
-.error {
-    background: #482735;
-    color: #ffb5c5;
-    padding: 12px;
-    border-radius: 8px;
-    margin-bottom: 18px;
-    text-align: center;
-    font-size: 14px;
-}
-
-label {
-    display: block;
-    margin-bottom: 9px;
-    font-size: 14px;
-    color: #e2dff0;
-}
-
-input {
-    width: 100%;
-    padding: 14px;
-    background: #131225;
-    border: 1px solid #403b5b;
-    border-radius: 9px;
-    color: white;
-    font-size: 15px;
-    margin-bottom: 22px;
-    outline: none;
-}
-
-input:focus {
-    border-color: #aa92ff;
-}
-
-.password-box {
-    position: relative;
-}
-
-.password-box input {
-    padding-right: 65px;
-}
-
-.show-btn {
-    position: absolute;
-    right: 12px;
-    top: 13px;
-    color: #b9a5ff;
-    cursor: pointer;
-    font-size: 12px;
-    background: none;
-    border: none;
-}
-
-.login-btn {
-    width: 100%;
-    padding: 15px;
-    border: none;
-    border-radius: 9px;
-    background: #a68aff;
-    color: #17132a;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-    margin-top: 5px;
-}
-
-.login-btn:hover {
-    background: #beaaff;
-}
-
-.signup {
-    text-align: center;
-    color: #aaa6bd;
-    font-size: 14px;
-    margin-top: 25px;
-}
-
-.signup a {
-    color: #c0adff;
-    text-decoration: none;
-    font-weight: bold;
-}
-
-.home {
-    display: block;
-    text-align: center;
-    color: #aaa6bd;
-    text-decoration: none;
-    margin-top: 25px;
-    font-size: 13px;
-}
-
-@media(max-width:450px) {
-    .container {
-        padding: 35px 23px;
-    }
-}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
+body{min-height:100vh;background:#111020;display:flex;align-items:center;justify-content:center;padding:20px;color:white}
+.container{width:100%;max-width:420px;background:#1d1b32;padding:42px 35px;border-radius:20px;border:1px solid #34304d;box-shadow:0 20px 60px rgba(0,0,0,.3)}
+.logo{text-align:center;color:#b9a5ff;font-size:25px;font-weight:bold;margin-bottom:30px}
+.logo span{color:white}
+.icon{width:65px;height:65px;margin:0 auto 22px;background:#30294d;color:#c4b3ff;border-radius:18px;display:flex;align-items:center;justify-content:center;font-size:30px}
+h1{text-align:center;font-size:27px;margin-bottom:10px}
+.subtitle{text-align:center;color:#aaa6bd;font-size:14px;margin-bottom:25px}
+.role{text-align:center;color:#c4b3ff;font-weight:bold;margin-bottom:20px}
+.error{background:#482735;color:#ffb5c5;padding:12px;border-radius:8px;margin-bottom:18px;text-align:center;font-size:14px}
+label{display:block;margin-bottom:9px;font-size:14px;color:#e2dff0}
+input{width:100%;padding:14px;background:#131225;border:1px solid #403b5b;border-radius:9px;color:white;font-size:15px;margin-bottom:22px;outline:none}
+input:focus{border-color:#aa92ff}
+.password-box{position:relative}
+.password-box input{padding-right:65px}
+.show-btn{position:absolute;right:12px;top:13px;color:#b9a5ff;cursor:pointer;font-size:12px;background:none;border:none}
+.login-btn{width:100%;padding:15px;border:none;border-radius:9px;background:#a68aff;color:#17132a;font-size:16px;font-weight:bold;cursor:pointer;margin-top:5px}
+.login-btn:hover{background:#beaaff}
+.signup{text-align:center;color:#aaa6bd;font-size:14px;margin-top:25px}
+.signup a{color:#c0adff;text-decoration:none;font-weight:bold}
+.home{display:block;text-align:center;color:#aaa6bd;text-decoration:none;margin-top:25px;font-size:13px}
+@media(max-width:450px){.container{padding:35px 23px}}
 </style>
 </head>
 
 <body>
-
 <div class="container">
 
-    <div class="logo">◈ <span>TrustVault</span></div>
+<div class="logo">◈ <span>TrustVault</span></div>
+<div class="icon">🔐</div>
 
-    <div class="icon">🔐</div>
+<h1>Welcome Back</h1>
+<p class="subtitle">Your private space is waiting for you.</p>
 
-    <h1>Welcome Back</h1>
+<p class="role">
+{% if role == 'admin' %}
+Admin Login
+{% elif role == 'viewer' %}
+Viewer Login
+{% else %}
+Owner Login
+{% endif %}
+</p>
 
-    <p class="subtitle">
-        Your private space is waiting for you.
-    </p>
+{% if error %}
+<div class="error">{{ error }}</div>
+{% endif %}
 
-    {% if error %}
-    <div class="error">{{ error }}</div>
-    {% endif %}
+<form method="POST">
+{% csrf_token %}
+<input type="hidden" name="role" value="{{ role|default:'owner' }}">
 
-    <form method="POST">
-        {% csrf_token %}
+<label>Username</label>
+<input type="text" name="username" placeholder="Enter your username" required>
 
-        <label>Username</label>
-        <input type="text"
-               name="username"
-               placeholder="Enter your username"
-               required>
+<label>Password</label>
+<div class="password-box">
+<input type="password" name="password" id="password" placeholder="Enter your password" required>
+<button type="button" class="show-btn" onclick="togglePassword()">Show</button>
+</div>
 
-        <label>Password</label>
+<button type="submit" class="login-btn">Login to TrustVault →</button>
+</form>
 
-        <div class="password-box">
-            <input type="password"
-                   name="password"
-                   id="password"
-                   placeholder="Enter your password"
-                   required>
+<p class="signup">
+Don't have an account?
+<a href="{% url 'signup' %}">Create Account</a>
+</p>
 
-            <button type="button"
-                    class="show-btn"
-                    onclick="togglePassword()">
-                Show
-            </button>
-        </div>
-
-        <button type="submit" class="login-btn">
-            Login to TrustVault →
-        </button>
-    </form>
-
-    <p class="signup">
-        Don't have an account?
-        <a href="/signup/">Create Account</a>
-    </p>
-
-    <a href="/" class="home">← Back to Home</a>
-
+<a href="{% url 'home' %}" class="home">← Back to Home</a>
 </div>
 
 <script>
-function togglePassword() {
-    const password = document.getElementById("password");
-    const button = document.querySelector(".show-btn");
-
-    if (password.type === "password") {
-        password.type = "text";
-        button.textContent = "Hide";
-    } else {
-        password.type = "password";
-        button.textContent = "Show";
-    }
+function togglePassword(){
+const password=document.getElementById("password");
+const button=document.querySelector(".show-btn");
+if(password.type==="password"){
+password.type="text";
+button.textContent="Hide";
+}else{
+password.type="password";
+button.textContent="Show";
+}
 }
 </script>
-
 </body>
 </html>
